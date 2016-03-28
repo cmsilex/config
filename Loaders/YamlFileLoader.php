@@ -1,20 +1,17 @@
 <?php
 
-namespace CMSilex\Config;
+namespace CMSilex\Loaders;
 
 use Symfony\Component\Config\Loader\FileLoader;
+use Symfony\Component\Yaml\Yaml;
 
 class YamlFileLoader extends FileLoader
 {
     public function load ($resource, $type = null)
     {
-        $configValues = Yaml::parse(file_get_contents($resource));
-
-        // ... handle the config values
-
-        // maybe import some other resource:
-
-        // $this->import('extra_users.yml');
+        $resolved = $this->getLocator()->locate($resource);
+        $configValues = Yaml::parse(file_get_contents($resolved));
+       return $configValues;
     }
 
     public function supports($resource, $type = null)
