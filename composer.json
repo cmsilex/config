@@ -1,0 +1,17 @@
+{
+  "name": "cmsilex/config",
+  "authors": [
+    {
+      "name": "Leigh Murray",
+      "email": "leighmurray@2wattend.com"
+    }
+  ],
+  "require": {
+    "silex/silex": "^1.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "CMSilex\\ServiceProviders\\":""
+    }
+  }
+}
