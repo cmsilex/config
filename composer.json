@@ -11,7 +11,9 @@
   },
   "autoload": {
     "psr-4": {
-      "CMSilex\\":""
+      "CMSilex\\ServiceProviders\\":"ServiceProviders",
+      "CMSilex\\Loaders\\":"Loaders"
+
     }
   }
 }
