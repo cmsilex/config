@@ -16,7 +16,7 @@ class ConfigServiceProvider implements ServiceProviderInterface
     public function register(Application $app)
     {
         $app['config'] = $app->share(function () use ($app) {
-            $configDirectories = ['../config/'];
+            $configDirectories = ['../config/', './config/'];
 
             $locator = new FileLocator($configDirectories);
 
