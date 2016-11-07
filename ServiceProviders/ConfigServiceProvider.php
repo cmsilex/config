@@ -4,8 +4,8 @@ namespace CMSilex\ServiceProviders;
 
 use CMSilex\Configuration;
 use CMSilex\Loaders\YamlFileLoader;
-use Silex\Application;
-use Silex\ServiceProviderInterface;
+use Pimple\Container;
+use Pimple\ServiceProviderInterface;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\DelegatingLoader;
@@ -13,9 +13,10 @@ use Symfony\Component\Config\Loader\LoaderResolver;
 
 class ConfigServiceProvider implements ServiceProviderInterface
 {
-    public function register(Application $app)
+
+    public function register(Container $container)
     {
-        $app['config'] = $app->share(function () use ($app) {
+        $container['config'] = function () {
             $configDirectories = ['../config/', './config/'];
 
             $locator = new FileLocator($configDirectories);
@@ -34,11 +35,6 @@ class ConfigServiceProvider implements ServiceProviderInterface
             );
 
             return $processedConfiguration;
-        });
-    }
-
-    public function boot(Application $app)
-    {
-        // TODO: Implement boot() method.
+        };
     }
 }
